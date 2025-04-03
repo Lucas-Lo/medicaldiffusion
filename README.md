@@ -1,3 +1,8 @@
+# Lucas Edit
+pytorcch lightning 1.6.4 not available, so needed to download latest version
+Need to install ipykernal
+Need to install cuda on torch (Not sure)
+
 # Medical Diffusion
 
 This repository contains the code to our paper "Medical Diffusion: Denoising Diffusion Probabilistic Models for 3D Medical Image Synthesis"
