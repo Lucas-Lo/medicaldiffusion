@@ -9,3 +9,5 @@ print("torch.cuda.current_device()", torch.cuda.current_device())
 print("torch.cuda.device(torch.cuda.current_device())", torch.cuda.device(torch.cuda.current_device()))
 
 print("-----CLOSE script test-----")
+
+from ddpm import unet
