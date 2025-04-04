@@ -5,4 +5,4 @@ WORKDIR medicaldiffusion
 COPY ./ ./
 
 RUN pip install -r requirements.txt
-CMD ["python", "test.py"]
+CMD ["./commands.sh"]
