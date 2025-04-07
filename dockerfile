@@ -4,6 +4,6 @@ WORKDIR medicaldiffusion
 
 COPY ./ ./
 
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 RUN chmod +x commands.sh
 CMD ["./commands.sh"]
