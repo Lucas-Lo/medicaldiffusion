@@ -10,12 +10,15 @@ from train.callbacks import ImageLogger, VideoLogger
 from train.get_dataset import get_dataset
 import hydra
 from omegaconf import DictConfig, open_dict
+from loguru import logger
 
 
 @hydra.main(config_path='../config', config_name='base_cfg', version_base=None)
 def run(cfg: DictConfig):
+    logger.info("Start of run function")
     pl.seed_everything(cfg.model.seed)
 
+    logger.info("get database")
     train_dataset, val_dataset, sampler = get_dataset(cfg)
     train_dataloader = DataLoader(dataset=train_dataset, batch_size=cfg.model.batch_size,
                                   num_workers=cfg.model.num_workers, sampler=sampler)
@@ -31,7 +34,8 @@ def run(cfg: DictConfig):
             cfg.model.default_root_dir, cfg.dataset.name, cfg.model.default_root_dir_postfix)
     print("Setting learning rate to {:.2e} = {} (accumulate_grad_batches) * {} (num_gpus/8) * {} (batchsize/4) * {:.2e} (base_lr)".format(
         cfg.model.lr, accumulate, ngpu/8, bs/4, base_lr))
-
+    
+    logger.info(f"cfg: {cfg}")
     model = VQGAN(cfg)
 
     callbacks = []
@@ -73,6 +77,7 @@ def run(cfg: DictConfig):
     if cfg.model.gpus > 1:
         accelerator = 'ddp'
 
+    logger.info("start training")
     trainer = pl.Trainer(
         gpus=cfg.model.gpus,
         accumulate_grad_batches=cfg.model.accumulate_grad_batches,
