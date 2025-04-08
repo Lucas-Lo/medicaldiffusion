@@ -78,20 +78,24 @@ def run(cfg: DictConfig):
         accelerator = 'ddp'
 
     logger.info("start training")
-    trainer = pl.Trainer(
-        gpus=cfg.model.gpus,
-        accumulate_grad_batches=cfg.model.accumulate_grad_batches,
-        default_root_dir=cfg.model.default_root_dir,
-        resume_from_checkpoint=cfg.model.resume_from_checkpoint,
-        callbacks=callbacks,
-        max_steps=cfg.model.max_steps,
-        max_epochs=cfg.model.max_epochs,
-        precision=cfg.model.precision,
-        gradient_clip_val=cfg.model.gradient_clip_val,
-        accelerator=accelerator,
-    )
+    for x in train_dataloader:
+        logger.info(f"x: {x}")
+        for y in x:
+            logger.info(f"y: {y.shape}")
+    # trainer = pl.Trainer(
+    #     gpus=cfg.model.gpus,
+    #     accumulate_grad_batches=cfg.model.accumulate_grad_batches,
+    #     default_root_dir=cfg.model.default_root_dir,
+    #     resume_from_checkpoint=cfg.model.resume_from_checkpoint,
+    #     callbacks=callbacks,
+    #     max_steps=cfg.model.max_steps,
+    #     max_epochs=cfg.model.max_epochs,
+    #     precision=cfg.model.precision,
+    #     gradient_clip_val=cfg.model.gradient_clip_val,
+    #     accelerator=accelerator,
+    # )
 
-    trainer.fit(model, train_dataloader, val_dataloader)
+    # trainer.fit(model, train_dataloader, val_dataloader)
 
 
 if __name__ == '__main__':
