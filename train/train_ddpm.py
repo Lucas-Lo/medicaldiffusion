@@ -9,12 +9,14 @@ from train.get_dataset import get_dataset
 import torch
 import os
 from ddpm.unet import UNet
+from loguru import logger
 
 
 # NCCL_P2P_DISABLE=1 accelerate launch train/train_ddpm.py
 
 @hydra.main(config_path='../config', config_name='base_cfg', version_base=None)
 def run(cfg: DictConfig):
+    logger.info(f"cfg: {cfg}")
     torch.cuda.set_device(cfg.model.gpus)
     with open_dict(cfg):
         cfg.model.results_folder = os.path.join(
