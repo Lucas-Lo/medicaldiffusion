@@ -15,6 +15,7 @@ import torch
 @hydra.main(config_path='../config', config_name='base_cfg', version_base=None)
 def run(cfg: DictConfig):
     logger.info("Start of run function")
+    logger.ingo(f"cfg: {cfg}")
     pl.seed_everything(cfg.model.seed)
 
     logger.info("get database")
