@@ -77,11 +77,8 @@ def run(cfg: DictConfig):
     if cfg.model.gpus > 1:
         accelerator = 'ddp'
 
+    logger.info(f"path to checkpoints: {cfg.model.default_root_dir}")
     logger.info("start training")
-    # for x in train_dataloader:
-    #     logger.info(f"x: {x}")
-    #     for y in x:
-    #         logger.info(f"y: {len(y)}")
     trainer = pl.Trainer(
         gpus=cfg.model.gpus,
         accumulate_grad_batches=cfg.model.accumulate_grad_batches,
