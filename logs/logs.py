@@ -74,16 +74,14 @@ def run(cfg: DictConfig):
 
     logger.info("start training")
     for x in train_dataloader:
-        logger.info(f"x: {x}")
-        logger.info(f"len x: {len(x)}")
-        for y in x:
-            logger.info(f"y: {y}")
+        logger.info(f"typex: {type(x)}")
+        logger.info(f"x: {x["data"]}")
         break
     
     device = torch.device("cuda")
     model.to(device)
-    x[0].to(device)
-    logger.info(f"model: {model(x[0])}")
+    x["data"].to(device)
+    logger.info(f"model: {model(x["data"])}")
 
 
 if __name__ == '__main__':
