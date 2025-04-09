@@ -76,6 +76,7 @@ def run(cfg: DictConfig):
     for x in train_dataloader:
         logger.info(f"typex: {type(x)}")
         logger.info(f"x: {x['data']}")
+        logger.info(f"x shape: {x['data'].shape}")
         break
     
     device = torch.device("cuda")
