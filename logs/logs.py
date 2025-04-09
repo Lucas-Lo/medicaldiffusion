@@ -81,7 +81,7 @@ def run(cfg: DictConfig):
     device = torch.device("cuda")
     model.to(device)
     x["data"].to(device)
-    logger.info(f"model: {model(x["data"])}")
+    logger.info(f"model: {model(x['data'])}")
 
 
 if __name__ == '__main__':
