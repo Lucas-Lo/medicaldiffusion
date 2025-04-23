@@ -5,9 +5,9 @@ docker rm -f medicaldiffusion
 echo "Image building ..."
 docker build -t medicaldiffusion:train .
 
-echo "Log folder creation"
-rm -f -R log_medicaldiffusion
-mkdir log_medicaldiffusion
+# echo "Log folder creation"
+# rm -f -R log_medicaldiffusion
+# mkdir log_medicaldiffusion
 
 echo "Container launching ..."
 docker run --gpus '"device=0"' --name medicaldiffusion --shm-size=16gb medicaldiffusion:train
