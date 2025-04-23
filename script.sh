@@ -14,4 +14,4 @@ docker container wait medicaldiffusion
 echo "try to copy container"
 rm -f -R container_copy
 mkdir container_copy
-docker container cp -r medicaldiffusion:/ $(pwd)/container_copy
+docker container cp medicaldiffusion:/ $(pwd)/container_copy
