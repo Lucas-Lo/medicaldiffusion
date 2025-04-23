@@ -5,6 +5,10 @@ docker rm -f medicaldiffusion
 echo "Image building ..."
 docker build -t medicaldiffusion:train .
 
+echo "Removing some folders"
+rm -f -R log_medicaldiffusion
+rm -f -R container_copy
+
 # echo "Log folder creation"
 # rm -f -R log_medicaldiffusion
 # mkdir log_medicaldiffusion
@@ -17,6 +21,5 @@ echo "Waiting for container to finish..."
 docker container wait medicaldiffusion
 
 echo "try to copy container"
-rm -f -R container_copy
 mkdir container_copy
 docker container cp medicaldiffusion:/ $(pwd)/container_copy
