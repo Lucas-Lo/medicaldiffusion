@@ -1,5 +1,6 @@
 ## Informations générales
 Ce projet permet de lancer via un conteneur docker un run d'entrainement pour le modèle de génération d'images.
+Le projet est basé sur un repository github : https://github.com/FirasGit/medicaldiffusion
 
 ## Lignes de commandes pour le lancement des entrainements
 Un script commands.sh permet de lancer les commandes python pour l'entrainement du GAN puis du modèle de diffusion.
@@ -14,6 +15,8 @@ Un second script script.sh permet de lancer les commandes docker. Il supprime l'
 A la fin de l'opération, le conteneur est sauvegardé afin de récupérer les poids des modèles.
 /!\ Attention à bien accorder les droits d'ériture.
 
-
 ## Base de données
 En ce qui concerne le format des données, il est attendu que toutes les données soients présentes dans le dossier data à la racine. Ce dossier contiendra chaque patch au format .nii
+
+## Installation de Python
+Pour ce projet , Python 3.8 est attendu : contraintes du repository de base. Un fichier requirements.txt permet d'installer les packages nécessaires.
